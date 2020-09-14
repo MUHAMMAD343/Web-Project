@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ISHTIAQ.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer Details</h2>
+
+@using (Html.BeginForm("Index", "Customers", FormMethod.Get))
+{
+    <b>SearchBy: </b> @Html.RadioButton("SearchBy", "CustomerName", true)<text>   Name   </text>
+    @Html.RadioButton("SearchBy", "Address")<text >   Address  </text>
+
+    @Html.TextBox("Search") <input class="bg-primary" type="submit" value="Search" />
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-responsive-md table-striped text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.custname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobile)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.custname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
